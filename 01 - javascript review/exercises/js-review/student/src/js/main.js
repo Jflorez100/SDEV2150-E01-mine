@@ -9,9 +9,8 @@ const output = document.querySelector("#output")
 
 const btnRun = document.querySelector("#btn-run")
 
-const clear = document.querySelector("#btn-clear")
+const btnClear = document.querySelector("#btn-clear")
 
-console.log(toDo)
 // Grab references to the main UI elements.
 // These IDs should already exist in index.html.
 
@@ -71,12 +70,11 @@ const tasks = [
 // TODO: Use a loop to count completed tasks
 
 // TODO: Display: "Completed: X of Y"
-let completeCount = 0
-
+let completedCount = 0;
 for (const task of tasks) {
-    if (task.done) completeCount++;
+    if (task.done) completedCount++;
 }
-
+output.textContent = `Completed: ${completedCount} of ${tasks.length} tasks`
 //output.textContent = `Completed: ${}`
 // --------------------------------------------------
 // STEP 5: Problem solving – build HTML from data
@@ -95,9 +93,9 @@ function RenderTaskList(items) {
     let html = "<ul>";
     for (const item of items) {
         const status = item.done ? "done" : "todo";
-        html += `<li class="${status}">${item.title}<li>`
+        html += `<li class="${status}">${item.title}</li>`
     }
-    html += "<ul>";
+    html += "</ul>";
     return html;
 }
 
@@ -106,7 +104,14 @@ toDo.innerHTML = RenderTaskList(tasks)
 // STEP 6: DOM manipulation with createElement
 // --------------------------------------------------
 // Create and append elements instead of using innerHTML.
+function addMessage(message) {
+    const p = document.createElement("p");
 
+    p.textContent = message;
+    output.appendChild(p);
+}
+
+addMessage("This message was appended with document.createElement")
 // TODO: Create a function addMessage(message)
 // - Create a <p> element
 // - Set its textContent
@@ -123,7 +128,19 @@ toDo.innerHTML = RenderTaskList(tasks)
 // - Clear output
 // - Add a few messages
 // - Render the task list
+function runDemo(){
+    output.innerHTML = "";
+    addMessage("Running demo...");
+    addMessage(formatResult("5 + 8", add(5, 8)));
+    toDo.innerHTML = RenderTaskList(tasks);
+}
 
+function clearUI() {
+    output.innerHTML = '';
+    toDo.innerHTML = '';
+}
+btnRun.addEventListener("click", runDemo)
+btnClear.addEventListener("click", clearUI)
 // TODO: Create a function clearUI()
 // - Clear both output and todo list containers
 

@@ -96,7 +96,7 @@ output.textContent = `Completed: ${completedCount} of ${tasks.length} tasks`
 // - Close the list and return the string
 
 // TODO: Render the task list inside the list container
-function renderTaskList(items) {
+function RenderTaskList(items) {
     let html = "<ul>";
     for (const item of items) {
         const status = item.done ? "done" : "todo";
@@ -108,7 +108,7 @@ function renderTaskList(items) {
     return html;
 }
 
-list.innerHTML = renderTaskList(tasks)
+list.innerHTML = RenderTaskList(tasks)
 // --------------------------------------------------
 // STEP 6: DOM manipulation with createElement
 // --------------------------------------------------

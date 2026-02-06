@@ -54,11 +54,11 @@ import './components/resource-details.js';
 // ];
 
 // JS has access to top-level awaits! (does not need to be inside an async function block)
-const response = await fetch('http://localhost:3000/resources')
-const data = await response.json()
+// const response = await fetch('http://localhost:3000/resources')
+// const data = await response.json()
 
 const resultsComponent = document.querySelector('resource-results');
-resultsComponent.results = data;
+// resultsComponent.results = data;
 
 // Filters emit state, main.js updates results and resets details
 const filtersComponent = document.querySelector('resource-filters');

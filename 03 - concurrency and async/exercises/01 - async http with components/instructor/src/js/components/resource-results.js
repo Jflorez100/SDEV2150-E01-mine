@@ -85,6 +85,25 @@ class ResourceResults extends HTMLElement {
     this.shadowRoot.removeEventListener('click', this._handleResultClick);
   }
 
+  static get observedAttributes() { // HTMLElement callback function to declare which attributes are monitored for change
+    return ['source'];  // array of attributes I'm monitoring
+  }
+
+  attributeChangedCallback(name, oldVal, newVal) {
+    // 1.a) check if name matches the attribute we want to execute logic for (I might be monitoring multiple attributes)
+    // 1.b) check if value has changed
+    // 2. if checks pass, fetch the data from the source (i.e. newVal)
+    this.#fetchData(newVal);
+  }
+
+  async #fetchData(source) {
+    // try-except a fetch
+    // check if response is OK (i.e. status code 200)
+    // if so, try to get data from response
+    // catch and log any errors
+    // ensure this is written in a way that will trigger a re-render
+  }
+
   #applyFilters() {
     const { query, category, openNow, virtual } = this.#filters;
     const normalizedQuery = query.trim().toLowerCase();
